@@ -188,7 +188,7 @@ export default function Contact() {
                 <span>
                   <b>Email</b>
                   <span>
-                    hello@talenticaresource.com
+                    info@talenticaresource.com
                     <br />
                     careers@talenticaresource.com
                   </span>

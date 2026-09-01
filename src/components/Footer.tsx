@@ -34,7 +34,7 @@ export default function Footer() {
               <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn">
                 <Icon name="linkedin" size={17} />
               </a>
-              <a href="mailto:hello@talenticaresource.com" aria-label="Email">
+              <a href="mailto:info@talenticaresource.com" aria-label="Email">
                 <Icon name="mail" size={17} />
               </a>
               <a href="tel:+910000000000" aria-label="Phone">
@@ -63,7 +63,7 @@ export default function Footer() {
 
           <div className="f-col">
             <h4>Get in touch</h4>
-            <a href="mailto:hello@talenticaresource.com">hello@talenticaresource.com</a>
+            <a href="mailto:info@talenticaresource.com">info@talenticaresource.com</a>
             <a href="mailto:careers@talenticaresource.com">careers@talenticaresource.com</a>
             <Link to="/contact">Pune, Maharashtra, India</Link>
           </div>

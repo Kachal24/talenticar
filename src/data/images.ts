@@ -1,38 +1,56 @@
 /**
  * Photography for the site.
  *
- * Each entry is an Unsplash photo chosen to match the section it sits in.
- * `u()` appends the crop/format params so every image ships at a sane weight.
- * If a request fails, <Img> removes itself and the navy→blue gradient behind
- * it shows through, exactly as the original static page behaved.
+ * The files live in src/assets/photos and are bundled by Vite, so each one
+ * ships with a content hash and can be cached forever. Nothing is fetched
+ * from a third-party host at runtime.
+ *
+ * Sourced from Unsplash (Unsplash License — free for commercial use, no
+ * attribution required) and re-encoded to WebP at 1200px wide, quality 70.
+ * To swap a photo, drop a replacement into src/assets/photos and update the
+ * import below; the build fails if a file is missing, so nothing goes stale.
  */
-const u = (id: string, w = 1200) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=70`;
+import aboutTeam from '../assets/photos/about-team.webp';
+import blogDesk from '../assets/photos/blog-desk.webp';
+import blogOffice from '../assets/photos/blog-office.webp';
+import blogWorkspace from '../assets/photos/blog-workspace.jpg';
+import careersTeam from '../assets/photos/careers-team.webp';
+import developerCode from '../assets/photos/developer-code.webp';
+import heroDashboard from '../assets/photos/hero-dashboard.webp';
+import heroMeeting from '../assets/photos/hero-meeting.webp';
+import hiringPanel from '../assets/photos/hiring-panel.webp';
+import processMetrics from '../assets/photos/process-metrics.webp';
+import serviceAutomation from '../assets/photos/service-automation.webp';
+import serviceData from '../assets/photos/service-data.webp';
+import serviceHr from '../assets/photos/service-hr.webp';
+import serviceSoftware from '../assets/photos/service-software.webp';
+import serviceSupport from '../assets/photos/service-support.webp';
+import serviceWeb from '../assets/photos/service-web.webp';
 
 export const IMG = {
   /* home */
-  heroMeeting: u('photo-1552664730-d307ca884978'),
-  heroDashboard: u('photo-1551288049-bebda4e38f71', 800),
-  hiringPanel: u('photo-1521737604893-d14cc237f11d'),
-  processMetrics: u('photo-1460925895917-afdab827c52f'),
-  developerCode: u('photo-1517180102446-f3ece451e9d8'),
+  heroMeeting,
+  heroDashboard,
+  hiringPanel,
+  processMetrics,
+  developerCode,
 
   /* about */
-  aboutTeam: u('photo-1522071820081-009f0129c71c'),
+  aboutTeam,
 
   /* services */
-  serviceHr: u('photo-1600880292089-90a7e086ee0c'),
-  serviceWeb: u('photo-1547658719-da2b51169166'),
-  serviceAutomation: u('photo-1518770660439-4636190af475'),
-  serviceSoftware: u('photo-1461749280684-dccba630e2f6'),
-  serviceData: u('photo-1543286386-713bdd548da4'),
-  serviceSupport: u('photo-1497366754035-f200968a6e72'),
+  serviceHr,
+  serviceWeb,
+  serviceAutomation,
+  serviceSoftware,
+  serviceData,
+  serviceSupport,
 
   /* careers */
-  careersTeam: u('photo-1521737711867-e3b97375f902'),
+  careersTeam,
 
   /* insights */
-  blogOffice: u('photo-1497366811353-6870744d04b2'),
-  blogDesk: u('photo-1486312338219-ce68d2c6f44d'),
-  blogWorkspace: u('photo-1497215728101-856f4ea42174'),
+  blogOffice,
+  blogDesk,
+  blogWorkspace,
 } as const;

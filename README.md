@@ -20,6 +20,7 @@ npm run typecheck  # tsc --noEmit
 | `/`                 | Hero, services, problem rows, delivery method, models, industries, testimonials, insights preview, FAQ, CTA |
 | `/about`            | Positioning, commitments, practice groups, first 30 days |
 | `/services`         | Six full service rows, technology stack                 |
+| `/services/:slug`   | One page per header menu item (28 of them), one template |
 | `/industries`       | Six sector cards, compliance posture                    |
 | `/insights`         | All articles + newsletter signup                        |
 | `/insights/:slug`   | Article view with related posts                         |
@@ -40,9 +41,11 @@ src/
   data/
     images.ts           the Unsplash photo set, one place to swap them
     posts.ts            the six insight articles (typed content blocks)
-    site.ts             services, industries, jobs, FAQs, stats, nav
+    menu.ts             the header nav tree + the copy for all 28 service pages
+    site.ts             services, industries, jobs, FAQs, stats
   components/
     Header/Footer/Logo  chrome, mobile drawer, wordmark
+    MegaMenu.tsx        hover/click dropdown, Escape + outside-click to close
     Bits.tsx            SectionHead, PageHero, InfoCard, MediaRow, Steps,
                         Stats, Quote, CtaBand, BadgeFloat
     Reveal.tsx          IntersectionObserver scroll-reveal (+ useReveal hook)
@@ -55,7 +58,9 @@ src/
 
 ## What is interactive
 
-- Sticky header with an animated underline on the active route
+- Sticky header, nav beside the logo, actions on the right
+- Two mega-menus: open on hover (desktop) or click, close on Escape, outside click
+  or navigation. Below 1140px they collapse into the burger drawer as accordions.
 - Mobile burger drawer that closes on navigation
 - Scroll-reveal on cards, rows and section heads, staggered per grid position
 - Stat counters that ease up the first time they enter the viewport
@@ -67,8 +72,17 @@ Every animation is disabled under `prefers-reduced-motion: reduce`.
 
 ## Images
 
-`src/data/images.ts` is the only file that references photo URLs — swap the values there
-to use your own assets. If a photo fails to load, `<Img>` unmounts and the navy→blue
+All 16 photos are stored locally in `src/assets/photos` and imported through
+`src/data/images.ts` — nothing is fetched from a third-party host at runtime. Vite
+bundles them with a content hash, so they can be cached forever and a missing file
+breaks the build rather than the page.
+
+WebP at 1200px wide / quality 70 (one file stayed JPEG — the CDN would not serve a
+WebP for it). Sourced from Unsplash, whose licence permits commercial use without
+attribution.
+
+To swap a photo: drop the replacement into `src/assets/photos` and update its import
+in `images.ts`. If an image still fails to load, `<Img>` unmounts and the navy→blue
 gradient behind it stands in, matching the original page's `onerror` behaviour.
 
 ## Before launch
